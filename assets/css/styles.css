@@ -1,15 +1,23 @@
+/* 
+dark-blue: #00001b;
+light-yellow: #fcfaec;
+*/
+
 body {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     margin-top: 30px;
+    background-color: #00001b;
+    color: #fcfaec;
+    font-family: 'Montserrat', sans-serif;
 }
 
 #explanation {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     margin-right: 50px;
 }
@@ -23,4 +31,15 @@ body {
 
 #game-screen {
     margin-left: 50px;
+    margin-top: 20px;
+    border: 5px solid #fcfaec;
+}
+
+#logo {
+    width: 300px;
+}
+
+#email {
+    width: 550px;
+    margin-top: 20px;
 }
