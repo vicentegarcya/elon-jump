@@ -6,6 +6,8 @@ class Background {
         this.width = this.ctx.canvas.width;
         this.height = this.ctx.canvas.height;
 
+        this.vy = 3;
+
         this.img = new Image();
         this.img.src = "./assets/images/background.png";
         this.img.isReady = false;
@@ -23,5 +25,20 @@ class Background {
             this.width,
             this.height
         );
+        this.ctx.drawImage(
+            this.img,
+            this.x,
+            this.y - this.height,
+            this.width,
+            this.height
+        );
+    }
+
+    move(){
+        this.y += this.vy;
+        
+        if(this.y > this.ctx.canvas.height){
+            this.y = 0;
+        }
     }
 }

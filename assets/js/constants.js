@@ -1,0 +1,1 @@
+const platformFrames = 30;

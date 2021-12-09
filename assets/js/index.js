@@ -3,9 +3,15 @@ window.onload = () => {
     const ctx = canvas.getContext('2d');
 
     const game = new Game(ctx);
-    game.start();
 
-    //eventListener start-btn
+    document.getElementById('start-btn').onclick = () => {
+        game.start()
+    };
+    
+    // keydown listener
+
+    // keyup listener
+
 }
 
 
