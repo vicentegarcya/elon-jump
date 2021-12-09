@@ -12,6 +12,7 @@ body {
     background-color: #00001b;
     color: #fcfaec;
     font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
 }
 
 #explanation {
@@ -31,25 +32,45 @@ body {
 
 #game-screen {
     margin-left: 50px;
-    margin-top: 35px;
-    border: 5px solid #fcfaec;
+    margin-top: 25px;
+    border: 3px solid #fcfaec;
 }
 
 #logo {
-    width: 250px;
+    width: 170px;
 }
 
 #email {
-    width: 550px;
+    width: 450px;
     margin-top: 20px;
 }
 
 #wifi-icon {
-    width: 60px;
+    width: 40px;
 }
 
 #bouncy-icon {
-    width: 35px;
+    width: 25px;
+}
+
+#start-btn {
+    background-color: #00001b;
+    padding: 10px 50px;
+    width: 60%;
+    font-size: 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    color: #fcfaec;
+    border: 1px solid #fcfaec;
+    margin-bottom: 25px;
+    margin-top: -5px;
+    box-shadow: 7px 7px #fcfaec;
+}
+
+#start-btn:hover {
+    background-color: #fcfaec;
+    color: #00001b;
+    border: 1px solid #00001b;
 }
 
 .icons-div {
@@ -60,4 +81,29 @@ body {
     margin: 20px 30px;
     text-decoration: underline 3px;
     text-underline-offset: 5px;
+}
+
+.arrow-keys {
+    width: 40px;
+    margin: 0 5px;
+}
+
+#controls {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #fcfaec;
+    padding-top: 10px;
+    width: 80%;
+}
+
+#controls p {
+    font-style: italic;
+    color: #00001b;
+}
+
+#arrow-keys {
+    display: flex;
+    justify-content: center;
 }
