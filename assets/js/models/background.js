@@ -6,7 +6,7 @@ class Background {
         this.width = this.ctx.canvas.width;
         this.height = this.ctx.canvas.height;
 
-        this.vy = 3;
+        this.vy = 2.5;
 
         this.img = new Image();
         this.img.src = "./assets/images/background.png";
