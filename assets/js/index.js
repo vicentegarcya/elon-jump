@@ -9,8 +9,14 @@ window.onload = () => {
     };
     
     // keydown listener
+    document.onkeydown = (event) => {
+        game.onKeyDown(event);
+    }
 
     // keyup listener
+    document.onkeyup = (event) => {
+        game.onKeyUp(event);
+    }
 
 }
 

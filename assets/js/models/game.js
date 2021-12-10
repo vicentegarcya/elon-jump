@@ -38,6 +38,10 @@ class Game {
 
                 this.draw();
 
+                this.checkCollisions();
+
+                this.gameOver();
+
                 this.platformFramesCount++;
                 
             }, this.fps);
@@ -51,7 +55,7 @@ class Game {
     move(){
         this.background.move();
         this.platforms.forEach(platform => platform.move());
-
+        this.player.move();
 
     }
 
@@ -64,5 +68,28 @@ class Game {
 
     addPlatform(){
         this.platforms.push(new Platform(this.ctx, Math.floor(Math.random() * (353 - 0 + 1) + 0), -15))
+    }
+
+    onKeyDown(event){
+        this.player.onKeyDown(event);
+    }
+
+    onKeyUp(event){
+        this.player.onKeyUp(event);
+    }
+
+    checkCollisions(){
+        const playerCollidesWithPlatform = this.platforms.find(platform => this.player.collidesWithPlatform(platform))
+
+        if(playerCollidesWithPlatform){
+            this.player.vy = -5;
+            console.log('collindg')
+        }
+    }
+
+    gameOver(){
+        if(this.player.y > this.ctx.canvas.height){
+            clearInterval(this.intervalId);
+        }
     }
 }

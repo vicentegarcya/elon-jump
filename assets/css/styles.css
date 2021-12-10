@@ -93,14 +93,13 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #fcfaec;
     padding-top: 10px;
     width: 80%;
 }
 
 #controls p {
     font-style: italic;
-    color: #00001b;
+    color: #fcfaec;
 }
 
 #arrow-keys {
