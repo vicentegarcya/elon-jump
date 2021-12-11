@@ -18,10 +18,13 @@ class Game {
             new Platform(ctx, 140, 90)
         ];
         this.player = new Player(ctx);
+        this.traps = [];
+        new Trap(ctx, 20, 80);
         this.intervalId = undefined;
         this.fps = 1000/60;
 
         this.platformFramesCount = 0;
+        this.trapFramesCount = 0;
     }
 
     start(){
@@ -32,6 +35,13 @@ class Game {
 
                     this.platformFramesCount = 0;
                 }
+
+                if(this.trapFramesCount % trapFrames === 0){
+                    this.addTrap();
+
+                    this.trapFramesCount = 0;
+                }
+
                 this.clear();
 
                 this.move();
@@ -42,7 +52,9 @@ class Game {
 
                 this.gameOver();
 
+                //Frame Counting
                 this.platformFramesCount++;
+                this.trapFramesCount++;
                 
             }, this.fps);
         }
@@ -56,6 +68,7 @@ class Game {
         this.background.move();
         this.platforms.forEach(platform => platform.move());
         this.player.move();
+        this.traps.forEach(trap => trap.move());
 
     }
 
@@ -63,11 +76,16 @@ class Game {
         this.background.draw();
         this.platforms.forEach(platform => platform.draw());
         this.player.draw();
+        this.traps.forEach(trap => trap.draw());
 
     }
 
     addPlatform(){
-        this.platforms.push(new Platform(this.ctx, Math.floor(Math.random() * (353 - 0 + 1) + 0), -15))
+        this.platforms.push(new Platform(this.ctx, Math.floor(Math.random() * (353 - 0 + 1) + 0), -15));
+    }
+
+    addTrap(){
+        this.traps.push(new Trap(this.ctx, Math.floor(Math.random() * (353 - 0 + 1) + 0)));
     }
 
     onKeyDown(event){
@@ -89,6 +107,8 @@ class Game {
     gameOver(){
         if(this.player.y > this.ctx.canvas.height){
             clearInterval(this.intervalId);
+            
+            //enlazar con la página de nuevo
         }
     }
 }
