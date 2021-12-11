@@ -19,12 +19,13 @@ class Game {
         ];
         this.player = new Player(ctx);
         this.traps = [];
-        new Trap(ctx, 20, 80);
+        this.bouncies = [];
         this.intervalId = undefined;
         this.fps = 1000/60;
 
         this.platformFramesCount = 0;
         this.trapFramesCount = 0;
+        this.bouncyFramesCount = 0;
     }
 
     start(){
@@ -42,6 +43,12 @@ class Game {
                     this.trapFramesCount = 0;
                 }
 
+                if(this.bouncyFramesCount % bouncyFrames === 0){
+                    this.addBouncy();
+
+                    this.bouncyFramesCount = 0;
+                }
+
                 this.clear();
 
                 this.move();
@@ -55,6 +62,7 @@ class Game {
                 //Frame Counting
                 this.platformFramesCount++;
                 this.trapFramesCount++;
+                this.bouncyFramesCount++;
                 
             }, this.fps);
         }
@@ -69,6 +77,7 @@ class Game {
         this.platforms.forEach(platform => platform.move());
         this.player.move();
         this.traps.forEach(trap => trap.move());
+        this.bouncies.forEach(bouncy => bouncy.move());
 
     }
 
@@ -77,6 +86,7 @@ class Game {
         this.platforms.forEach(platform => platform.draw());
         this.player.draw();
         this.traps.forEach(trap => trap.draw());
+        this.bouncies.forEach(bouncy => bouncy.draw());
 
     }
 
@@ -88,6 +98,10 @@ class Game {
         this.traps.push(new Trap(this.ctx, Math.floor(Math.random() * (353 - 0 + 1) + 0)));
     }
 
+    addBouncy(){
+        this.bouncies.push(new Bouncy(this.ctx, Math.floor(Math.random() * (330 - 30 + 1) + 30)));
+    }
+
     onKeyDown(event){
         this.player.onKeyDown(event);
     }
@@ -97,10 +111,26 @@ class Game {
     }
 
     checkCollisions(){
-        const playerCollidesWithPlatform = this.platforms.find(platform => this.player.collidesWithPlatform(platform))
-
-        if(playerCollidesWithPlatform){
+        const collidesWithPlatform = this.platforms.find(platform => this.player.collidesWithPlatform(platform));
+        if(collidesWithPlatform){
             this.player.vy = -6;
+            this.background.vy = 2.5;
+            
+        }
+
+        const collidesWithTrap = this.traps.find(trap => this.player.collidesWithTrap(trap));
+        if(collidesWithTrap){
+            this.player.vy = 0;
+            this.background.vy = 2.5;
+
+            this.traps = this.traps.filter(trap => trap !== collidesWithTrap);
+            
+        }
+
+        const collidesWithBouncy = this.bouncies.find(bouncy => this.player.collidesWithBouncy(bouncy));
+        if(collidesWithBouncy){
+            this.player.vy = -10;
+            
         }
     }
 

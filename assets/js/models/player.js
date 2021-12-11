@@ -94,4 +94,30 @@ class Player {
 
         return false
     }
+
+    collidesWithTrap(trap){
+        if(
+            this.x < trap.x + trap.width &&
+            this.x + this.width > trap.x &&
+            this.y < trap.y + trap.height &&
+            this.y + this.height > trap.y
+        ){
+            return true;
+        }
+
+        return false;
+    }
+
+    collidesWithBouncy(bouncy){
+        if(
+            this.x < bouncy.x + bouncy.width &&
+            this.x + this.width > bouncy.x &&
+            this.y < bouncy.y + bouncy.height &&
+            this.y + this.height > bouncy.y
+        ){
+            return true;
+        }
+
+        return false;
+    }
 }
