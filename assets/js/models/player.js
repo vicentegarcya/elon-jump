@@ -59,10 +59,12 @@ class Player {
     onKeyDown(event){
         if(event.keyCode === LEFT_KEY){
             this.vx = -3;
+            this.frameX = 3;
         }
 
         if(event.keyCode === RIGHT_KEY){
             this.vx = 3;
+            this.frameX = 1;
         }
     }
 
@@ -74,11 +76,19 @@ class Player {
 
     collidesWithPlatform(platform){
         if (
-            this.x < platform.x + platform.width &&
-            this.x + this.width > platform.x &&
-            this.y < platform.y + platform.height &&
-            this.y + this.height > platform.y
+            this.y + this.height >= platform.y &&
+            this.x + this.width / 2 >= platform.x &&
+            this.x <= platform.x + platform.width &&
+            this.y + this.height <= platform.y + platform.height -10
         ){
+            if(this.frameX === 1){
+                this.frameX = 0;
+            }
+
+            if(this.frameX === 3){
+                this.frameX = 2;
+            }
+
             return true
         }
 

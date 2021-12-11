@@ -14,7 +14,7 @@ class Game {
             new Platform(ctx, 140, 180),
             new Platform(ctx, 190, 270),
             new Platform(ctx, 0, 20),
-            new Platform(ctx, 40, 330),
+            new Platform(ctx, 40, 380),
             new Platform(ctx, 140, 90)
         ];
         this.player = new Player(ctx);
@@ -82,8 +82,7 @@ class Game {
         const playerCollidesWithPlatform = this.platforms.find(platform => this.player.collidesWithPlatform(platform))
 
         if(playerCollidesWithPlatform){
-            this.player.vy = -5;
-            console.log('collindg')
+            this.player.vy = -6;
         }
     }
 
