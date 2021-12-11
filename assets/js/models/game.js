@@ -31,7 +31,7 @@ class Game {
     start(){
         if(!this.intervalId){
             this.intervalId = setInterval(() => {
-                if(this.platformFramesCount % platformFrames === 0){
+                if(this.platformFramesCount % platformFrames1 === 0){
                     this.addPlatform();
 
                     this.platformFramesCount = 0;
@@ -75,18 +75,18 @@ class Game {
     move(){
         this.background.move();
         this.platforms.forEach(platform => platform.move());
+        this.bouncies.forEach(bouncy => bouncy.move());
         this.player.move();
         this.traps.forEach(trap => trap.move());
-        this.bouncies.forEach(bouncy => bouncy.move());
 
     }
 
     draw(){
         this.background.draw();
         this.platforms.forEach(platform => platform.draw());
+        this.bouncies.forEach(bouncy => bouncy.draw());
         this.player.draw();
         this.traps.forEach(trap => trap.draw());
-        this.bouncies.forEach(bouncy => bouncy.draw());
 
     }
 
@@ -113,15 +113,13 @@ class Game {
     checkCollisions(){
         const collidesWithPlatform = this.platforms.find(platform => this.player.collidesWithPlatform(platform));
         if(collidesWithPlatform){
-            this.player.vy = -6;
-            this.background.vy = 2.5;
-            
+            this.player.vy = -6;  
+
         }
 
         const collidesWithTrap = this.traps.find(trap => this.player.collidesWithTrap(trap));
         if(collidesWithTrap){
-            this.player.vy = 0;
-            this.background.vy = 2.5;
+            this.player.vy = 1;
 
             this.traps = this.traps.filter(trap => trap !== collidesWithTrap);
             

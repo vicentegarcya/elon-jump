@@ -78,8 +78,9 @@ class Player {
         if (
             this.y + this.height >= platform.y &&
             this.x + this.width / 2 >= platform.x &&
-            this.x <= platform.x + platform.width &&
-            this.y + this.height <= platform.y + platform.height -10
+            this.x + 10 <= platform.x + platform.width &&
+            this.y + this.height <= platform.y + platform.height -10 &&
+            this.vy >= -1
         ){
             if(this.frameX === 1){
                 this.frameX = 0;
@@ -110,10 +111,11 @@ class Player {
 
     collidesWithBouncy(bouncy){
         if(
-            this.x < bouncy.x + bouncy.width &&
-            this.x + this.width > bouncy.x &&
-            this.y < bouncy.y + bouncy.height &&
-            this.y + this.height > bouncy.y
+            this.y + this.height >= bouncy.y + 5 &&
+            this.x + this.width / 2 >= bouncy.x - 25 &&
+            this.x <= bouncy.x + bouncy.width + 25 &&
+            this.y + this.height <= bouncy.y + bouncy.height &&
+            this.vy >= -1
         ){
             return true;
         }

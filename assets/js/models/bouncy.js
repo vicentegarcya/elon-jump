@@ -3,8 +3,8 @@ class Bouncy {
         this.ctx = ctx;
         this.x = x;
         this.y = -15;
-        this.width = 25;
-        this.height = 25;
+        this.width = 27;
+        this.height = 27;
 
         this.vy = 2.5;
 
@@ -26,6 +26,15 @@ class Bouncy {
     }
 
     draw(){
+
+        this.ctx.drawImage(
+            this.imgPlatform,
+            this.x - 25,
+            this.y + this.height - 5,
+            75,
+            20
+        )
+
         this.ctx.drawImage(
             this.img,
             this.x,
@@ -33,14 +42,6 @@ class Bouncy {
             this.width,
             this.height
         );
-
-        this.ctx.drawImage(
-            this.imgPlatform,
-            this.x - 28,
-            this.y + this.height - 5,
-            75,
-            20
-        )
         
     }
 
