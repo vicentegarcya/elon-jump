@@ -72,7 +72,7 @@ button {
     box-shadow: 7px 7px #fcfaec;
 }
 
-#start-btn:hover, #restart-btn:hover {
+#start-btn:hover, .gameover-btn:hover {
     background-color: #fcfaec;
     color: #00001b;
     border: 1px solid #00001b;

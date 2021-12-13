@@ -147,6 +147,7 @@ class Game {
         //check Game Over
         if(this.player.y > this.ctx.canvas.height){
             this.gameOver();
+            document.dispatchEvent(new CustomEvent('game-finished-event'));
         }
 
     }
@@ -193,7 +194,6 @@ class Game {
         this.ctx.fillText(`${this.satellites}`, rectX+(rectWidth/2), 265);
 
         this.ctx.restore();
-        document.dispatchEvent(new CustomEvent('game-finished-event'));
     }
 
     drawScore(){
