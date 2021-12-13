@@ -5,7 +5,7 @@ window.onload = () => {
     const game = new Game(ctx);
 
     document.getElementById('start-btn').onclick = () => {
-        game.start()
+        game.start();
     };
     
     // keydown listener
@@ -17,7 +17,6 @@ window.onload = () => {
     document.onkeyup = (event) => {
         game.onKeyUp(event);
     }
-
 }
 
 

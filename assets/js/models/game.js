@@ -23,6 +23,12 @@ class Game {
         this.intervalId = undefined;
         this.fps = 1000/60;
 
+        this.score = 0;
+        this.satellites = 0;
+
+        this.imgSatellite = new Image();
+        this.imgSatellite.src = './assets/images/satellite.png';
+
         this.platformFramesCount = 0;
         this.trapFramesCount = 0;
         this.bouncyFramesCount = 0;
@@ -79,6 +85,7 @@ class Game {
         this.player.move();
         this.traps.forEach(trap => trap.move());
 
+        this.score++;
     }
 
     draw(){
@@ -87,6 +94,8 @@ class Game {
         this.bouncies.forEach(bouncy => bouncy.draw());
         this.player.draw();
         this.traps.forEach(trap => trap.draw());
+
+        this.drawScore();
 
     }
 
@@ -138,5 +147,36 @@ class Game {
             
             //enlazar con la página de nuevo
         }
+    }
+
+    drawScore(){
+        this.ctx.save();
+
+        this.ctx.fillStyle = 'rgba(255,255,255, 0.3)';
+        this.ctx.strokeStyle = "white";
+        this.ctx.strokeRect(0, 0, this.ctx.canvas.width, 40);
+        this.ctx.fillRect(0, 0, this.ctx.canvas.width, 40);
+
+        this.ctx.fillStyle = 'white';
+        this.ctx.font = '16px sans-serif';
+        //draw the main score
+        this.ctx.fillText(`Score:`, 15, 25);
+        this.ctx.font = 'bold 16px sans-serif';
+        this.ctx.fillText(`${this.score}`, 65, 25);
+
+        if(this.score % 2000 === 0){
+            this.satellites++;
+        }
+        //draw the satellites score
+        this.ctx.fillText(`x ${this.satellites}`, 385, 25);
+        this.ctx.drawImage(
+            this.imgSatellite,
+            360,
+            10,
+            20,
+            20
+        )
+
+        this.ctx.restore();
     }
 }
