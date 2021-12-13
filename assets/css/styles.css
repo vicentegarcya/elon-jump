@@ -34,6 +34,8 @@ body {
     margin-left: 50px;
     margin-top: 25px;
     border: 3px solid #fcfaec;
+    width: 428px;
+    position: relative;
 }
 
 #logo {
@@ -53,21 +55,24 @@ body {
     width: 25px;
 }
 
-#start-btn {
+button {
     background-color: #00001b;
-    padding: 10px 50px;
-    width: 60%;
-    font-size: 20px;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
     color: #fcfaec;
     border: 1px solid #fcfaec;
     margin-bottom: 25px;
     margin-top: -5px;
+}
+
+#start-btn {
+    font-size: 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    width: 60%;
+    padding: 10px 50px;
     box-shadow: 7px 7px #fcfaec;
 }
 
-#start-btn:hover {
+#start-btn:hover, #restart-btn:hover {
     background-color: #fcfaec;
     color: #00001b;
     border: 1px solid #00001b;
@@ -105,4 +110,41 @@ body {
 #arrow-keys {
     display: flex;
     justify-content: center;
+}
+
+.gameover-btn {
+    width: 100px;
+    font-size: 16px !important;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    padding: 10px 10px;
+    box-shadow: 3px 3px #fcfaec;
+    width: 100px;
+}
+
+#restart-btn {
+    position: absolute;
+    top: 350px;
+    left: 95px;
+}
+
+#share-btn {
+    position: absolute;
+    top: 350px;
+    left: 225px;
+}
+
+#score-btn {
+    position: absolute;
+    top: 420px;
+    left: 95px;
+    width: 229.5px;
+}
+
+.visible-btn {
+    visibility: visible;
+}
+
+.hidden-btn {
+    visibility: hidden;
 }
