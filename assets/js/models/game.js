@@ -25,9 +25,12 @@ class Game {
 
         this.score = 0;
         this.satellites = 0;
-
         this.imgSatellite = new Image();
         this.imgSatellite.src = './assets/images/satellite.png';
+        this.imgSatellite.isReady = false;
+        this.imgSatellite.onload = () => {
+            this.imgSatellite.isReady = true;
+        }
 
         this.platformFramesCount = 0;
         this.trapFramesCount = 0;
@@ -62,8 +65,6 @@ class Game {
                 this.draw();
 
                 this.checkCollisions();
-
-                this.gameOver();
 
                 //Frame Counting
                 this.platformFramesCount++;
@@ -120,12 +121,14 @@ class Game {
     }
 
     checkCollisions(){
+        //Check collisions with platform
         const collidesWithPlatform = this.platforms.find(platform => this.player.collidesWithPlatform(platform));
         if(collidesWithPlatform){
             this.player.vy = -6;  
 
         }
 
+        //check collisions with trap
         const collidesWithTrap = this.traps.find(trap => this.player.collidesWithTrap(trap));
         if(collidesWithTrap){
             this.player.vy = 1;
@@ -134,41 +137,88 @@ class Game {
             
         }
 
+        //check collisions with bouncy
         const collidesWithBouncy = this.bouncies.find(bouncy => this.player.collidesWithBouncy(bouncy));
         if(collidesWithBouncy){
             this.player.vy = -10;
             
         }
+
+        //check Game Over
+        if(this.player.y > this.ctx.canvas.height){
+            this.gameOver();
+
+        }
+
     }
 
     gameOver(){
-        if(this.player.y > this.ctx.canvas.height){
-            clearInterval(this.intervalId);
-            
-            //enlazar con la página de nuevo
-        }
+        clearInterval(this.intervalId);
+        this.ctx.save();
+
+        //draw the background
+        this.ctx.fillStyle = 'rgba(0, 0, 27, 0.7)';
+        this.ctx.fillRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
+
+        //draw the score rectangles
+        this.ctx.fillStyle = '#fcfaec';
+        this.ctx.fillRect(this.ctx.canvas.width / 2 - 65, 110, 140, 200);
+        this.ctx.fillStyle = '#00001b';
+        this.ctx.strokeStyle = "#fcfaec";
+        this.ctx.lineWidth = 3;
+        this.ctx.strokeRect(this.ctx.canvas.width / 2 - 75, 100, 140, 200);
+        this.ctx.fillRect(this.ctx.canvas.width / 2 - 75, 100, 140, 200);
+
+        //draw the score text
+        let rectWidth = 140;
+        let rectX = this.ctx.canvas.width / 2 - 75;
+
+        this.ctx.fillStyle = '#fcfaec';
+        this.ctx.font = '20px Montserrat';
+        this.ctx.textAlign = 'center';
+        this.ctx.fillText(`score`, rectX+(rectWidth/2), 140);
+        this.ctx.font = 'bold 26px Montserrat';
+        this.ctx.fillText(`${this.score}`, rectX+(rectWidth/2), 175);
+
+        this.ctx.fillStyle = '#fcfaec';
+        this.ctx.font = '20px Montserrat';
+        this.ctx.textAlign = 'center';
+        this.ctx.drawImage(
+            this.imgSatellite,
+            rectX+(rectWidth/2) - 17,
+            200,
+            35,
+            35
+        )
+        this.ctx.font = 'bold 28px Montserrat';
+        this.ctx.fillText(`${this.satellites}`, rectX+(rectWidth/2), 265);
+
+        this.ctx.restore();
     }
 
     drawScore(){
         this.ctx.save();
 
-        this.ctx.fillStyle = 'rgba(255,255,255, 0.3)';
+        this.ctx.fillStyle = 'rgba(255, 255, 236, 0.3)';
         this.ctx.strokeStyle = "white";
         this.ctx.strokeRect(0, 0, this.ctx.canvas.width, 40);
         this.ctx.fillRect(0, 0, this.ctx.canvas.width, 40);
 
-        this.ctx.fillStyle = 'white';
-        this.ctx.font = '16px sans-serif';
+        this.ctx.fillStyle = '#fcfaec';
+        this.ctx.font = '14px Montserrat';
         //draw the main score
-        this.ctx.fillText(`Score:`, 15, 25);
-        this.ctx.font = 'bold 16px sans-serif';
+        this.ctx.fillText(`score:`, 15, 25);
+        this.ctx.font = 'bold 14px Montserrat';
         this.ctx.fillText(`${this.score}`, 65, 25);
 
         if(this.score % 2000 === 0){
             this.satellites++;
         }
         //draw the satellites score
-        this.ctx.fillText(`x ${this.satellites}`, 385, 25);
+        this.ctx.font = '14px Montserrat';
+        this.ctx.fillText(`x `, 385, 25);
+        this.ctx.font = 'bold 16px Montserrat';
+        this.ctx.fillText(`${this.satellites}`, 396, 25);
         this.ctx.drawImage(
             this.imgSatellite,
             360,
