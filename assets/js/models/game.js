@@ -32,6 +32,12 @@ class Game {
             this.imgSatellite.isReady = true;
         }
 
+        this.music = new Audio('./assets/sounds/sintonia-2.wav');
+        this.music.loop = true;
+        this.music.volume = 0.2;
+
+        this.soundLose = new Audio('./assets/sounds/game-over-3.mp3');
+
         this.platformFramesCount = 0;
         this.trapFramesCount = 0;
         this.bouncyFramesCount = 0;
@@ -39,6 +45,7 @@ class Game {
 
     start(){
         if(!this.intervalId){
+            this.music.play();
             this.intervalId = setInterval(() => {
                 if(this.platformFramesCount % platformFrames1 === 0){
                     this.addPlatform();
@@ -148,6 +155,9 @@ class Game {
         if(this.player.y > this.ctx.canvas.height){
             this.gameOver();
             document.dispatchEvent(new CustomEvent('game-finished-event'));
+            this.music.pause();
+            this.soundLose.play();
+            //SetTimeout 4000
         }
 
     }
