@@ -132,6 +132,7 @@ class Game {
 
     addBouncy(){
         this.bouncies.push(new Bouncy(this.ctx, Math.floor(Math.random() * (330 - 30 + 1) + 30)));
+        this.platforms.push(new Platform(this.ctx, this.bouncies[0].x - 26, -15));
     }
 
     onKeyDown(event){
