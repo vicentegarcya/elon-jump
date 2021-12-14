@@ -20,9 +20,12 @@ class Game {
         this.player = new Player(ctx);
         this.traps = [];
         this.bouncies = [];
+
+        //interval
         this.intervalId = undefined;
         this.fps = 1000/60;
 
+        //scores
         this.score = 0;
         this.satellites = 0;
         this.imgSatellite = new Image();
@@ -32,12 +35,19 @@ class Game {
             this.imgSatellite.isReady = true;
         }
 
+        //music
         this.music = new Audio('./assets/sounds/sintonia-2.wav');
         this.music.loop = true;
         this.music.volume = 0.2;
 
-        this.soundLose = new Audio('./assets/sounds/game-over-3.mp3');
+        //sounds
+        this.gameOverSound = new Audio('./assets/sounds/game-over-3.mp3');
+        this.jumpingSound = new Audio('./assets/sounds/jump-sound.wav');
+        this.trapSound = new Audio('./assets/sounds/trap-sound.mp3');
+        this.bouncySound = new Audio('./assets/sounds/bouncy-sound.wav');
+        this.bouncySound.volume = 0.3;
 
+        //frames
         this.platformFramesCount = 0;
         this.trapFramesCount = 0;
         this.bouncyFramesCount = 0;
@@ -77,6 +87,8 @@ class Game {
                 this.platformFramesCount++;
                 this.trapFramesCount++;
                 this.bouncyFramesCount++;
+
+                console.log(this.platforms.length);
                 
             }, this.fps);
         }
@@ -84,6 +96,10 @@ class Game {
 
     clear(){
         this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
+
+        this.bouncies = this.bouncies.filter(bouncy => bouncy.y < 600);
+
+        this.platforms = this.platforms.filter(platform => platform.y < 600);
     }
 
     move(){
@@ -104,7 +120,6 @@ class Game {
         this.traps.forEach(trap => trap.draw());
 
         this.drawScore();
-
     }
 
     addPlatform(){
@@ -132,13 +147,14 @@ class Game {
         const collidesWithPlatform = this.platforms.find(platform => this.player.collidesWithPlatform(platform));
         if(collidesWithPlatform){
             this.player.vy = -6;  
-
+            this.jumpingSound.play();
         }
 
         //check collisions with trap
         const collidesWithTrap = this.traps.find(trap => this.player.collidesWithTrap(trap));
         if(collidesWithTrap){
             this.player.vy = 1;
+            this.trapSound.play();
 
             this.traps = this.traps.filter(trap => trap !== collidesWithTrap);
             
@@ -148,7 +164,7 @@ class Game {
         const collidesWithBouncy = this.bouncies.find(bouncy => this.player.collidesWithBouncy(bouncy));
         if(collidesWithBouncy){
             this.player.vy = -10;
-            
+            this.bouncySound.play();
         }
 
         //check Game Over
@@ -156,8 +172,7 @@ class Game {
             this.gameOver();
             document.dispatchEvent(new CustomEvent('game-finished-event'));
             this.music.pause();
-            this.soundLose.play();
-            //SetTimeout 4000
+            this.gameOverSound.play();
         }
 
     }
@@ -214,9 +229,9 @@ class Game {
         this.ctx.strokeRect(0, 0, this.ctx.canvas.width, 40);
         this.ctx.fillRect(0, 0, this.ctx.canvas.width, 40);
 
+        //draw the main score
         this.ctx.fillStyle = '#fcfaec';
         this.ctx.font = '14px Montserrat';
-        //draw the main score
         this.ctx.fillText(`score:`, 15, 25);
         this.ctx.font = 'bold 14px Montserrat';
         this.ctx.fillText(`${this.score}`, 65, 25);

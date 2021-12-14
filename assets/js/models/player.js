@@ -113,7 +113,7 @@ class Player {
         if(
             this.y + this.height >= bouncy.y + 5 &&
             this.x + this.width / 2 >= bouncy.x - 25 &&
-            this.x <= bouncy.x + bouncy.width + 25 &&
+            this.x <= bouncy.x + bouncy.width &&
             this.y + this.height <= bouncy.y + bouncy.height &&
             this.vy >= -1
         ){

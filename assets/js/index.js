@@ -21,7 +21,6 @@ window.onload = () => {
 
 const restartBtn = document.querySelectorAll('.gameover-btn');
 function showButtons(event) {
-    console.log("event ", event)
     restartBtn.forEach(button => {
         button.classList.remove('hidden-btn');
         button.classList.add('visible-btn');
