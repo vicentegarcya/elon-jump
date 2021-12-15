@@ -20,6 +20,8 @@ class Game {
         this.player = new Player(ctx);
         this.traps = [];
         this.bouncies = [];
+        this.brokenPlatforms = [];
+        this.mobilePlatforms = [];
 
         //interval
         this.intervalId = undefined;
@@ -51,25 +53,39 @@ class Game {
         this.platformFramesCount = 0;
         this.trapFramesCount = 0;
         this.bouncyFramesCount = 0;
+        this.brokenPlatformFramesCount = 0;
+        this.mobilePlatformFramesCount = 0;
     }
 
     start(){
         if(!this.intervalId){
             this.music.play();
             this.intervalId = setInterval(() => {
-                if(this.platformFramesCount % platformFrames1 === 0){
+                if(this.platformFramesCount > 0 && this.platformFramesCount % platformFrames === 0){
                     this.addPlatform();
 
                     this.platformFramesCount = 0;
                 }
 
-                if(this.trapFramesCount % trapFrames === 0){
+                if(this.brokenPlatformFramesCount > 0 && this.brokenPlatformFramesCount % brokenPlatformFrames === 0){
+                    this.addBrokenPlatform();
+
+                    this.brokenPlatformFramesCount = 0;
+                }
+
+                if(this.mobilePlatformFramesCount > 0 && this.mobilePlatformFramesCount % mobilePlatformFrames === 0){
+                    this.addMobilePlatform();
+
+                    this.mobilePlatformFramesCount = 0;
+                }
+
+                if(this.trapFramesCount > 0 && this.trapFramesCount % trapFrames === 0){
                     this.addTrap();
 
                     this.trapFramesCount = 0;
                 }
 
-                if(this.bouncyFramesCount % bouncyFrames === 0){
+                if(this.bouncyFramesCount > 0 && this.bouncyFramesCount % bouncyFrames === 0){
                     this.addBouncy();
 
                     this.bouncyFramesCount = 0;
@@ -87,8 +103,8 @@ class Game {
                 this.platformFramesCount++;
                 this.trapFramesCount++;
                 this.bouncyFramesCount++;
-
-                console.log(this.platforms.length);
+                this.brokenPlatformFramesCount++;
+                this.mobilePlatformFramesCount++;
                 
             }, this.fps);
         }
@@ -100,11 +116,14 @@ class Game {
         this.bouncies = this.bouncies.filter(bouncy => bouncy.y < 600);
 
         this.platforms = this.platforms.filter(platform => platform.y < 600);
+        this.mobilePlatforms = this.mobilePlatforms.filter(platform => platform.y < 600);
     }
 
     move(){
         this.background.move();
         this.platforms.forEach(platform => platform.move());
+        this.brokenPlatforms.forEach(platform => platform.move());
+        this.mobilePlatforms.forEach(platform => platform.move());
         this.bouncies.forEach(bouncy => bouncy.move());
         this.player.move();
         this.traps.forEach(trap => trap.move());
@@ -115,6 +134,8 @@ class Game {
     draw(){
         this.background.draw();
         this.platforms.forEach(platform => platform.draw());
+        this.brokenPlatforms.forEach(platform => platform.draw());
+        this.mobilePlatforms.forEach(platform => platform.draw());
         this.bouncies.forEach(bouncy => bouncy.draw());
         this.player.draw();
         this.traps.forEach(trap => trap.draw());
@@ -124,6 +145,14 @@ class Game {
 
     addPlatform(){
         this.platforms.push(new Platform(this.ctx, Math.floor(Math.random() * (353 - 0 + 1) + 0), -15));
+    }
+
+    addBrokenPlatform(){
+        this.brokenPlatforms.push(new BrokenPlatform(this.ctx, Math.floor(Math.random() * (353 - 0 + 1) + 0)));
+    }
+
+    addMobilePlatform(){
+        this.mobilePlatforms.push(new MobilePlatform(this.ctx, Math.floor(Math.random() * (353 - 0 + 1) + 0)));
     }
 
     addTrap(){
@@ -147,6 +176,22 @@ class Game {
         //Check collisions with platform
         const collidesWithPlatform = this.platforms.find(platform => this.player.collidesWithPlatform(platform));
         if(collidesWithPlatform){
+            this.player.vy = -6;  
+            this.jumpingSound.play();
+        }
+
+        //Check collisions with broken platform
+        const collidesWithBrokenPlatform = this.brokenPlatforms.find(platform => this.player.collidesWithPlatform(platform));
+        if(collidesWithBrokenPlatform){
+            this.player.vy = -6;  
+            this.jumpingSound.play();
+
+            this.brokenPlatforms = this.brokenPlatforms.filter(platform => platform !== collidesWithBrokenPlatform);
+        }
+
+        //Check collisions with mobile platform
+        const collidesWithMobilePlatform = this.mobilePlatforms.find(platform => this.player.collidesWithPlatform(platform));
+        if(collidesWithMobilePlatform){
             this.player.vy = -6;  
             this.jumpingSound.play();
         }
@@ -237,7 +282,7 @@ class Game {
         this.ctx.font = 'bold 14px Montserrat';
         this.ctx.fillText(`${this.score}`, 65, 25);
 
-        if(this.score % 2000 === 0){
+        if(this.score % 1000 === 0){
             this.satellites++;
         }
         //draw the satellites score
