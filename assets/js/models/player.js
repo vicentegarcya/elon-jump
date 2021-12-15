@@ -7,7 +7,7 @@ class Player {
         this.height = 52;
 
         this.vx = 0;
-        this.vy = -5;
+        this.vy = -6;
         this.ay = 0.2;
 
         this.img = new Image();

@@ -14,8 +14,12 @@ class Game {
             new Platform(ctx, 140, 180),
             new Platform(ctx, 190, 270),
             new Platform(ctx, 0, 20),
-            new Platform(ctx, 40, 380),
-            new Platform(ctx, 140, 90)
+            new Platform(ctx, 40, 340),
+            new Platform(ctx, 140, 90),
+            new Platform(ctx, 170, 130),
+            new Platform(ctx, 340, 175),
+            new Platform(ctx, 90, 40),
+            new Platform(ctx, 345, 113)
         ];
         this.player = new Player(ctx);
         this.traps = [];
@@ -209,7 +213,7 @@ class Game {
         //check collisions with bouncy
         const collidesWithBouncy = this.bouncies.find(bouncy => this.player.collidesWithBouncy(bouncy));
         if(collidesWithBouncy){
-            this.player.vy = -10;
+            this.player.vy = -11;
             this.bouncySound.play();
         }
 

@@ -31,7 +31,7 @@ class MobilePlatform {
     move(){
         this.y += this.vy;
         this.x += this.vx;
-        if(this.x + this.width > 428 || this.x < 0){
+        if(this.x + this.width > this.ctx.canvas.width || this.x < 0){
             this.vx *= -1;
         }
     }
