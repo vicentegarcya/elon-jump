@@ -53,7 +53,14 @@ class Game {
         this.bouncySound = new Audio('./assets/sounds/bouncy-sound.wav');
         this.bouncySound.volume = 0.3;
 
-        //frames
+        //objects appearing when X frames
+        this.platformFrames = 20;
+        this.brokenPlatformFrames = 263;
+        this.mobilePlatformFrames = 156;
+        this.trapFrames = 240;
+        this.bouncyFrames = 293;
+
+        //frame counting
         this.platformFramesCount = 0;
         this.trapFramesCount = 0;
         this.bouncyFramesCount = 0;
@@ -65,37 +72,39 @@ class Game {
         if(!this.intervalId){
             this.music.play();
             this.intervalId = setInterval(() => {
-                if(this.platformFramesCount > 0 && this.platformFramesCount % platformFrames === 0){
+                if(this.platformFramesCount > 0 && this.platformFramesCount % this.platformFrames === 0){
                     this.addPlatform();
 
                     this.platformFramesCount = 0;
                 }
 
-                if(this.brokenPlatformFramesCount > 0 && this.brokenPlatformFramesCount % brokenPlatformFrames === 0){
+                if(this.brokenPlatformFramesCount > 0 && this.brokenPlatformFramesCount % this.brokenPlatformFrames === 0){
                     this.addBrokenPlatform();
 
                     this.brokenPlatformFramesCount = 0;
                 }
 
-                if(this.mobilePlatformFramesCount > 0 && this.mobilePlatformFramesCount % mobilePlatformFrames === 0){
+                if(this.mobilePlatformFramesCount > 0 && this.mobilePlatformFramesCount % this.mobilePlatformFrames === 0){
                     this.addMobilePlatform();
 
                     this.mobilePlatformFramesCount = 0;
                 }
 
-                if(this.trapFramesCount > 0 && this.trapFramesCount % trapFrames === 0){
+                if(this.trapFramesCount > 0 && this.trapFramesCount % this.trapFrames === 0){
                     this.addTrap();
 
                     this.trapFramesCount = 0;
                 }
 
-                if(this.bouncyFramesCount > 0 && this.bouncyFramesCount % bouncyFrames === 0){
+                if(this.bouncyFramesCount > 0 && this.bouncyFramesCount % this.bouncyFrames === 0){
                     this.addBouncy();
 
                     this.bouncyFramesCount = 0;
                 }
 
                 this.clear();
+
+                this.levelUp();
 
                 this.move();
 
@@ -180,8 +189,13 @@ class Game {
         //Check collisions with platform
         const collidesWithPlatform = this.platforms.find(platform => this.player.collidesWithPlatform(platform));
         if(collidesWithPlatform){
-            this.player.vy = -6;  
+            this.player.vy = -6;
             this.jumpingSound.play();
+
+            //level 6
+            if(this.score > 15000){
+                this.player.vy = -5;
+            } 
         }
 
         //Check collisions with broken platform
@@ -227,6 +241,71 @@ class Game {
 
     }
 
+    drawScore(){
+        this.ctx.save();
+
+        this.ctx.fillStyle = 'rgba(255, 255, 236, 0.3)';
+        this.ctx.strokeStyle = "white";
+        this.ctx.strokeRect(0, 0, this.ctx.canvas.width, 40);
+        this.ctx.fillRect(0, 0, this.ctx.canvas.width, 40);
+
+        //draw the main score
+        this.ctx.fillStyle = '#fcfaec';
+        this.ctx.font = '14px Montserrat';
+        this.ctx.fillText(`score:`, 15, 25);
+        this.ctx.font = 'bold 14px Montserrat';
+        this.ctx.fillText(`${this.score}`, 65, 25);
+
+        if(this.score % 1000 === 0){
+            this.satellites++;
+        }
+        //draw the satellites score
+        this.ctx.font = '14px Montserrat';
+        this.ctx.fillText(`x `, 385, 25);
+        this.ctx.font = 'bold 16px Montserrat';
+        this.ctx.fillText(`${this.satellites}`, 396, 25);
+        this.ctx.drawImage(
+            this.imgSatellite,
+            360,
+            10,
+            20,
+            20
+        )
+
+        this.ctx.restore();
+    }
+
+    levelUp(){
+        //level 2
+        if(this.score > 3000){
+            this.trapFrames = 140;
+        }
+
+        //level 3
+        if(this.score > 6000){
+            this.platformFrames = 30;
+        }
+
+        //level 4
+        if(this.score > 9000){
+            this.brokenPlatformFrames = 160;
+            this.platformFrames = 35;
+        }
+
+        //level 5
+        /* if(this.score > 12000){
+            this.mobilePlatforms.forEach(platform => platform.vx = 3);
+        } */
+
+        //level 6
+        //It's done in the checkCollisions() method
+
+        //level 7
+        if(this.score > 18000){
+            this.platformFrames = 45;
+        }
+    }
+
     gameOver(){
         clearInterval(this.intervalId);
         this.ctx.save();
@@ -267,40 +346,6 @@ class Game {
         )
         this.ctx.font = 'bold 28px Montserrat';
         this.ctx.fillText(`${this.satellites}`, rectX+(rectWidth/2), 265);
-
-        this.ctx.restore();
-    }
-
-    drawScore(){
-        this.ctx.save();
-
-        this.ctx.fillStyle = 'rgba(255, 255, 236, 0.3)';
-        this.ctx.strokeStyle = "white";
-        this.ctx.strokeRect(0, 0, this.ctx.canvas.width, 40);
-        this.ctx.fillRect(0, 0, this.ctx.canvas.width, 40);
-
-        //draw the main score
-        this.ctx.fillStyle = '#fcfaec';
-        this.ctx.font = '14px Montserrat';
-        this.ctx.fillText(`score:`, 15, 25);
-        this.ctx.font = 'bold 14px Montserrat';
-        this.ctx.fillText(`${this.score}`, 65, 25);
-
-        if(this.score % 1000 === 0){
-            this.satellites++;
-        }
-        //draw the satellites score
-        this.ctx.font = '14px Montserrat';
-        this.ctx.fillText(`x `, 385, 25);
-        this.ctx.font = 'bold 16px Montserrat';
-        this.ctx.fillText(`${this.satellites}`, 396, 25);
-        this.ctx.drawImage(
-            this.imgSatellite,
-            360,
-            10,
-            20,
-            20
-        )
 
         this.ctx.restore();
     }
