@@ -61,6 +61,7 @@ button {
     border: 1px solid #fcfaec;
     margin-bottom: 25px;
     margin-top: -5px;
+    cursor: pointer;
 }
 
 #start-btn {
@@ -72,7 +73,7 @@ button {
     box-shadow: 7px 7px #fcfaec;
 }
 
-#start-btn:hover, .gameover-btn:hover {
+#start-btn:hover, .gameover-btn:hover, .select-player-btn:hover {
     background-color: #fcfaec;
     color: #00001b;
     border: 1px solid #00001b;
@@ -148,3 +149,46 @@ button {
 .hidden-btn {
     visibility: hidden;
 }
+
+.select-player-btn {
+    width: 100px;
+    font-size: 16px !important;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    padding: 10px 10px;
+    width: 100px;
+}
+
+.clicked-btn {
+    background-color: #fcfaec;
+    color: #00001b;
+    border: 1px solid #00001b;
+}
+
+#red-sprite {
+    position: absolute;
+    top: 180px;
+    left: 97px;
+    box-shadow: -5px 5px #fcfaec;
+}
+
+#link-sprite {
+    position: absolute;
+    top: 180px;
+    left: 225px;
+    box-shadow: 5px 5px #fcfaec;
+}
+
+.sprites-front {
+    width: 50px;
+}
+
+#select-sprite-text {
+    position: absolute;
+    top: 320px;
+    left: 58px;
+    margin-right: 58px;
+    font-size: 24px;
+    text-align: center;
+}
+

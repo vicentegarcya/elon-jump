@@ -1,6 +1,7 @@
 class Player {
-    constructor(ctx){
+    constructor(ctx, sprite = 'zelda-sprite'){
         this.ctx = ctx;
+        this.sprite = sprite;
         this.x = 40;
         this.y = 450;
         this.width = 50;
@@ -11,7 +12,7 @@ class Player {
         this.ay = 0.2;
 
         this.img = new Image();
-        this.img.src = './assets/images/player.png';
+        this.img.src = `./assets/images/${this.sprite}.png`;
         this.img.isReady = false;
         this.img.onload = () => {
             this.img.isReady = true;

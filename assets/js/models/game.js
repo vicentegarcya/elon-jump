@@ -21,7 +21,9 @@ class Game {
             new Platform(ctx, 90, 40),
             new Platform(ctx, 345, 113)
         ];
-        this.player = new Player(ctx);
+        
+        this.playerSprite = 'zelda-sprite';
+        this.player = undefined;
         this.traps = [];
         this.bouncies = [];
         this.brokenPlatforms = [];
@@ -68,8 +70,14 @@ class Game {
         this.mobilePlatformFramesCount = 0;
     }
 
+    setPlayer(sprite){
+        this.playerSprite = sprite;
+
+        this.player = new Player(this.ctx, this.playerSprite)
+    }
+
     start(){
-        if(!this.intervalId){
+        if(!this.intervalId && this.player){
             this.music.play();
             this.intervalId = setInterval(() => {
                 if(this.platformFramesCount > 0 && this.platformFramesCount % this.platformFrames === 0){

@@ -35,6 +35,17 @@
     </div>
     <div id="game-screen">
         <canvas id="my-canvas" width="428" height="600"></canvas>
+        <button class="select-player-btn clicked-btn" id="red-sprite">
+            <img class="sprites-front" src="./assets/images/red-front-image.png" alt="red sprite">
+            <br>
+            Red
+        </button>
+        <button class="select-player-btn" id="link-sprite">
+            <img class="sprites-front" src="./assets/images/link-front-image.png" alt="link sprite">
+            <br>
+            Link
+        </button>
+        <p id="select-sprite-text">select a player and press the play button</p>
         <button class="gameover-btn hidden-btn" id="restart-btn" onclick="window.location.href='https://vicentegarcya.github.io/elon-jump/'">restart</button>
         <button class="gameover-btn hidden-btn" id="share-btn" onclick="javascript:window.open('https://wa.me/?text=Juega%20a%20ElonJump%20GRATIS%20https://vicentegarcya.github.io/elon-jump/', '_blank');">share</button>
         <button class="gameover-btn hidden-btn" id="score-btn">add to scoreboard</button>
