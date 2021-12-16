@@ -113,6 +113,8 @@ button {
     justify-content: center;
 }
 
+/* GAME OVER BUTTONS */
+
 .gameover-btn {
     width: 100px;
     font-size: 16px !important;
@@ -149,6 +151,8 @@ button {
 .hidden-btn {
     visibility: hidden;
 }
+
+/* SELECT PLAYER */
 
 .select-player-btn {
     width: 100px;
@@ -190,5 +194,156 @@ button {
     margin-right: 58px;
     font-size: 24px;
     text-align: center;
+}
+
+/* LOADING PAGE ANIMATIONS */
+
+.loading-div {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #00001b;
+    animation-name: loaderAnimationDiv;
+    animation-duration: 3s;
+    opacity: 0;
+}
+
+.loading-img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    opacity: 0;
+    height: 100px;
+}
+
+#elon-loading {
+    animation-name: loaderAnimationElon;
+    animation-duration: 3s;
+    position: abslotue;
+    left: 43%;
+}
+
+#rocket-loading {
+    animation-name: loaderAnimationRocket;
+    animation-duration: 3s;
+    position: abslotue;
+}
+
+#jump-loading {
+    animation-name: loaderAnimationJump;
+    animation-duration: 3s;
+    position: abslotue;
+    left: 58.5%;
+}
+
+@keyframes loaderAnimationRocket {
+    0% {
+        opacity: 1;
+        height: 90px;
+        top: 30%;
+    }
+    20% {
+        opacity: 1;
+        height: 70px;
+        top: 50%;
+    }
+    40% {
+        opacity: 1;
+        height: 90px;
+        top: 30%;
+    }
+    80% {
+        opacity: 1;
+        height: 70px;
+        top: 50%;
+    }
+    90% {
+        opacity: 1;
+        height: 180px;
+        top: -20%;
+    }
+    100% {
+        opacity: 0.1;
+        height: 0px;
+        top: -20%;
+    }
+}
+
+@keyframes loaderAnimationElon {
+    0% {
+        opacity: 1;
+        height: 90px;
+    }
+    20% {
+        opacity: 1;
+        height: 70px;
+    }
+    40% {
+        opacity: 1;
+        height: 90px;
+        left: 43%;
+    }
+    80% {
+        opacity: 1;
+        height: 70px;
+        left: 38%;
+    }
+    90% {
+        opacity: 1;
+        height: 70px;
+        left: 46%;
+    }
+    100% {
+        opacity: 1;
+        height: 0px;
+        left: 50%;
+    }
+}
+
+@keyframes loaderAnimationJump {
+    0% {
+        opacity: 1;
+        height: 90px;
+    }
+    20% {
+        opacity: 1;
+        height: 70px;
+    }
+    40% {
+        opacity: 1;
+        height: 90px;
+        left: 58.5%;
+    }
+    80% {
+        opacity: 1;
+        height: 70px;
+        left: 63.5%;
+    }
+    90% {
+        opacity: 1;
+        height: 70px;
+        left: 56%;
+    }
+    100% {
+        opacity: 1;
+        height: 0px;
+        left: 50%;
+    }
+}
+
+@keyframes loaderAnimationDiv {
+    0% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+
+    }
+    100% {
+        opacity: 0;
+    }
 }
 

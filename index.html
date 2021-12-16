@@ -10,7 +10,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,300;0,500;0,700;1,300;1,500;1,700&display=swap" rel="stylesheet"> 
 </head>
+
 <body>
+    <!--INSTRUCTIONS-->
     <div id="explanation">
         <img id="logo" src="./assets/images/elon-jump-logo.png" alt="ElonJump's logo">
         <img id="email" src="./assets/images/elon-mail.png" alt="Elon Musk's email to employees">
@@ -33,6 +35,8 @@
             <p>use the left and right arrows to control the player</p>
         </div>
     </div>
+
+    <!--CANVAS-->
     <div id="game-screen">
         <canvas id="my-canvas" width="428" height="600"></canvas>
         <button class="select-player-btn clicked-btn" id="red-sprite">
@@ -50,6 +54,15 @@
         <button class="gameover-btn hidden-btn" id="share-btn" onclick="javascript:window.open('https://wa.me/?text=Juega%20a%20ElonJump%20GRATIS%20https://vicentegarcya.github.io/elon-jump/', '_blank');">share</button>
         <button class="gameover-btn hidden-btn" id="score-btn">add to scoreboard</button>
     </div>
+
+    <!--LOADING PAGE-->
+    <div class="loading-div">
+        <img class="loading-img" id="elon-loading" src="./assets/images/elon-carga.png" alt="">
+        <img class="loading-img" id="rocket-loading" src="./assets/images/cohete-carga.png" alt="">
+        <img class="loading-img" id="jump-loading" src="./assets/images/jump-carga.png" alt="">
+    </div>
+
+    <!--GAME SCRIPTS-->
     <script type="text/javascript" src="./assets/js/models/traps.js"></script>
     <script type="text/javascript" src="./assets/js/models/bouncy.js"></script>
     <script type="text/javascript" src="./assets/js/models/mobile-platforms.js"></script>

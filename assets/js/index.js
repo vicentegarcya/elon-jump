@@ -5,6 +5,11 @@ const game = new Game(ctx);
 game.setPlayer('red-sprite');
 
 window.onload = () => {
+    //loading page
+    setTimeout(() => {
+        document.querySelector('.loading-div').style.display = 'none'
+    }, 3000);
+
     document.getElementById('start-btn').onclick = () => {
         if(game.player){
             game.start();
