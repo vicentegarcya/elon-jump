@@ -222,20 +222,17 @@ button {
 #elon-loading {
     animation-name: loaderAnimationElon;
     animation-duration: 3s;
-    position: abslotue;
     left: 43%;
 }
 
 #rocket-loading {
     animation-name: loaderAnimationRocket;
     animation-duration: 3s;
-    position: abslotue;
 }
 
 #jump-loading {
     animation-name: loaderAnimationJump;
     animation-duration: 3s;
-    position: abslotue;
     left: 58.5%;
 }
 
