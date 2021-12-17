@@ -33,6 +33,8 @@ window.onload = () => {
     }
 }
 
+
+//select player interface
 const redButton = document.getElementById('red-sprite');
 const linkButton = document.getElementById('link-sprite');
 const selectPlayerText = document.getElementById('select-sprite-text');
@@ -49,13 +51,37 @@ linkButton.onclick = () => {
     redButton.classList.remove('clicked-btn');
 };
 
+
+//game-over interface
 const restartBtn = document.querySelectorAll('.gameover-btn');
+const inputName = document.getElementById('input-name');
+const addScoreBtn = document.getElementById('score-btn')
 function showButtons(event) {
     restartBtn.forEach(button => {
         button.classList.remove('hidden-btn');
         button.classList.add('visible-btn');
-    })
+    });
+    inputName.classList.remove('hidden-btn');
+    inputName.classList.add('visible-btn');
     document.removeEventListener('gameFinished-event', showButtons)
 }
 
 document.addEventListener('game-finished-event', showButtons)
+
+//scoreboard logic
+window.localStorage.setItem('scoreList', JSON.stringify([]));
+let storedScores = JSON.parse(localStorage.getItem('scoresList')) ?? [];
+addScoreBtn.onclick = () => {
+    storedScores.push(
+        {'name': inputName.value, 'score': game.score}
+    );
+    inputName.value = '';
+    window.localStorage.clear();
+    window.localStorage.setItem('scoresList', JSON.stringify(storedScores));
+}
+
+
+
+
+console.log(storedScores[0]);
+console.log(storedScores[1]);

@@ -55,7 +55,7 @@ body {
     width: 25px;
 }
 
-button {
+button, input {
     background-color: #00001b;
     color: #fcfaec;
     border: 1px solid #fcfaec;
@@ -137,9 +137,22 @@ button {
     left: 225px;
 }
 
+#input-name {
+    position: absolute;
+    top: 410px;
+    left: 95px;
+    width: 207.5px;
+    box-shadow: 3px 3px #fcfaec;
+    padding: 10px 10px;
+    font-size: 16px !important;
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    cursor: text;
+}
+
 #score-btn {
     position: absolute;
-    top: 420px;
+    top: 470px;
     left: 95px;
     width: 229.5px;
 }
@@ -344,3 +357,12 @@ button {
     }
 }
 
+/* SCORES PAGE */
+
+.non-displayed {
+    display: none;
+}
+
+.displayed {
+    display: block;
+}
