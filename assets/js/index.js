@@ -93,7 +93,7 @@ addScoreBtn.onclick = () => {
 
         storedScores.forEach(object => {
             scoresTable.innerHTML += `
-            <tr>
+            <tr class="score-cell">
                 <td>${object.name}</td>
                 <td>${object.score}</td>
             </tr>
