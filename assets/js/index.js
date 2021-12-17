@@ -55,7 +55,8 @@ linkButton.onclick = () => {
 //game-over interface
 const restartBtn = document.querySelectorAll('.gameover-btn');
 const inputName = document.getElementById('input-name');
-const addScoreBtn = document.getElementById('score-btn')
+const addScoreBtn = document.getElementById('score-btn');
+
 function showButtons(event) {
     restartBtn.forEach(button => {
         button.classList.remove('hidden-btn');
@@ -64,7 +65,7 @@ function showButtons(event) {
     inputName.classList.remove('hidden-btn');
     inputName.classList.add('visible-btn');
     document.removeEventListener('gameFinished-event', showButtons)
-}
+};
 
 document.addEventListener('game-finished-event', showButtons)
 
@@ -72,27 +73,45 @@ document.addEventListener('game-finished-event', showButtons)
 const scoresTable = document.getElementById('scores-table');
 const scoresTableNames = document.getElementById('score-table-names');
 const scoresTableScores = document.getElementById('score-table-scores');
+const closeScoreList = document.getElementById('close-score-list');
 
 window.localStorage.setItem('scoreList', JSON.stringify([]));
+
+//get the score list from the localStorage
 let storedScores = JSON.parse(localStorage.getItem('scoresList')) ?? [];
+
+//push new score, sort the list by score and remove items from the 11th score till the end
 addScoreBtn.onclick = () => {
-    storedScores.push(
-        {'name': inputName.value, 'score': game.score}
-    );
-    inputName.value = '';
-    
-    window.localStorage.clear();
-    window.localStorage.setItem('scoresList', JSON.stringify(storedScores));
+    if(inputName.value !== ''){
+        storedScores.push({'name': inputName.value, 'score': game.score});
+        storedScores.sort((a, b) => b.score - a.score).splice(10);
+        
+        inputName.value = '';
 
-    storedScores.forEach(object => {
-        scoresTable.innerHTML += `
-        <tr>
-            <td>${object.name}</td>
-            <td>${object.score}</td>
-        </tr>
-        `;
-    })
-    scoresTable.classList.remove('non-displayed');
-}
+        window.localStorage.clear();
+        window.localStorage.setItem('scoresList', JSON.stringify(storedScores));
 
-console.log(storedScores);
+        storedScores.forEach(object => {
+            scoresTable.innerHTML += `
+            <tr>
+                <td>${object.name}</td>
+                <td>${object.score}</td>
+            </tr>
+            `;
+        });
+
+        inputName.classList.remove('visible-btn');
+        inputName.classList.add('hidden-btn');
+        addScoreBtn.classList.remove('visible-btn');
+        addScoreBtn.classList.add('hidden-btn');
+
+        scoresTable.classList.remove('non-displayed');
+        closeScoreList.classList.remove('non-displayed');
+    };
+};
+
+//close the score list
+closeScoreList.onclick = () => {
+    scoresTable.classList.add('non-displayed');
+    closeScoreList.classList.add('non-displayed');
+};

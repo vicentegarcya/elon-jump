@@ -362,3 +362,43 @@ button, input {
 .non-displayed {
     display: none;
 }
+
+#scores-table {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 90%;
+    background-color: #00001b;
+    color: #fcfaec;
+    text-align: center;
+    border-collapse: collapse;
+    border-color: #fcfaec;
+}
+
+#scores-table th {
+    font-size: 14px;
+    width: 70%;
+    color: #00001b;
+    background-color: #fcfaec;
+    
+}
+
+#scores-table tr {
+    border: 2px solid #fcfaec;
+}
+
+#close-score-list {
+    position: absolute;
+    width: 100%;
+    height: 61px;
+    top: 543px;
+    left: 0;
+    margin: 0;
+    background-color: rgb(190, 81, 81);
+    border: 5px solid #00001b;
+    color: #fcfaec;
+    font-size: 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+}
