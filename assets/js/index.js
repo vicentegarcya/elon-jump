@@ -69,6 +69,10 @@ function showButtons(event) {
 document.addEventListener('game-finished-event', showButtons)
 
 //scoreboard logic
+const scoresTable = document.getElementById('scores-table');
+const scoresTableNames = document.getElementById('score-table-names');
+const scoresTableScores = document.getElementById('score-table-scores');
+
 window.localStorage.setItem('scoreList', JSON.stringify([]));
 let storedScores = JSON.parse(localStorage.getItem('scoresList')) ?? [];
 addScoreBtn.onclick = () => {
@@ -76,12 +80,19 @@ addScoreBtn.onclick = () => {
         {'name': inputName.value, 'score': game.score}
     );
     inputName.value = '';
+    
     window.localStorage.clear();
     window.localStorage.setItem('scoresList', JSON.stringify(storedScores));
+
+    storedScores.forEach(object => {
+        scoresTable.innerHTML += `
+        <tr>
+            <td>${object.name}</td>
+            <td>${object.score}</td>
+        </tr>
+        `;
+    })
+    scoresTable.classList.remove('non-displayed');
 }
 
-
-
-
-console.log(storedScores[0]);
-console.log(storedScores[1]);
+console.log(storedScores);
