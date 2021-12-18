@@ -378,7 +378,7 @@ button, input {
 
 #scores-table th {
     font-size: 14px;
-    width: 70%;
+    width: 30%;
     height: 9.09%;
     color: #00001b;
     background-color: #fcfaec;
@@ -387,6 +387,10 @@ button, input {
 
 #scores-table tr {
     border: 2px solid #fcfaec;
+}
+
+#sprite-head {
+    width: 30%;
 }
 
 #close-score-list {
@@ -402,4 +406,8 @@ button, input {
     font-size: 20px;
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
+}
+
+#scores-table img {
+    width: 28px;
 }

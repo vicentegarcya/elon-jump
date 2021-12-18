@@ -73,7 +73,15 @@ class Game {
     setPlayer(sprite){
         this.playerSprite = sprite;
 
-        this.player = new Player(this.ctx, this.playerSprite)
+        this.player = new Player(this.ctx, this.playerSprite);
+
+        if(this.playerSprite === 'zelda-sprite'){
+            this.player.frontImg.src = `./assets/images/link-front-image.png`;
+        }
+
+        if(this.playerSprite === 'red-sprite'){
+            this.player.frontImg.src = `./assets/images/red-front-image.png`;
+        }
     }
 
     start(){

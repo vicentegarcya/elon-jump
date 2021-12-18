@@ -64,7 +64,7 @@ function showButtons(event) {
     });
     inputName.classList.remove('hidden-btn');
     inputName.classList.add('visible-btn');
-    document.removeEventListener('gameFinished-event', showButtons)
+    document.removeEventListener('game-finished-event', showButtons)
 };
 
 document.addEventListener('game-finished-event', showButtons)
@@ -78,12 +78,12 @@ const closeScoreList = document.getElementById('close-score-list');
 window.localStorage.setItem('scoreList', JSON.stringify([]));
 
 //get the score list from the localStorage
-let storedScores = JSON.parse(localStorage.getItem('scoresList')) ?? [];
+let storedScores = JSON.parse(localStorage.getItem('scoresList')) || [];
 
 //push new score, sort the list by score and remove items from the 11th score till the end
 addScoreBtn.onclick = () => {
     if(inputName.value !== ''){
-        storedScores.push({'name': inputName.value, 'score': game.score});
+        storedScores.push({'sprite': game.player.frontImg.src, 'name': inputName.value, 'score': game.score});
         storedScores.sort((a, b) => b.score - a.score).splice(10);
         
         inputName.value = '';
@@ -93,11 +93,13 @@ addScoreBtn.onclick = () => {
 
         storedScores.forEach(object => {
             scoresTable.innerHTML += `
-            <tr class="score-cell">
+            <tr class="score-row">
+                <td><img src='${object.sprite}'</td>
                 <td>${object.name}</td>
                 <td>${object.score}</td>
             </tr>
             `;
+            console.log(object.sprite)
         });
 
         inputName.classList.remove('visible-btn');

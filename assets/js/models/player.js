@@ -24,6 +24,8 @@ class Player {
         this.frameX = 0;
         this.frameY = 0;
 
+        this.frontImg = new Image();
+        this.frontImg.src = undefined;
     }
 
     draw(){
