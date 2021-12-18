@@ -252,14 +252,28 @@ button, input {
 
 #red-sprite {
     position: absolute;
-    top: 180px;
+    top: 100px;
+    left: 97px;
+    box-shadow: -5px 5px #fcfaec;
+}
+
+#aura-sprite {
+    position: absolute;
+    top: 240px;
     left: 97px;
     box-shadow: -5px 5px #fcfaec;
 }
 
 #link-sprite {
     position: absolute;
-    top: 180px;
+    top: 100px;
+    left: 225px;
+    box-shadow: 5px 5px #fcfaec;
+}
+
+#peach-sprite {
+    position: absolute;
+    top: 240px;
     left: 225px;
     box-shadow: 5px 5px #fcfaec;
 }
@@ -270,7 +284,7 @@ button, input {
 
 #select-sprite-text {
     position: absolute;
-    top: 320px;
+    top: 380px;
     left: 58px;
     margin-right: 58px;
     font-size: 24px;

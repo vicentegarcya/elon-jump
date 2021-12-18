@@ -82,6 +82,14 @@ class Game {
         if(this.playerSprite === 'red-sprite'){
             this.player.frontImg.src = `./assets/images/red-front-image.png`;
         }
+
+        if(this.playerSprite === 'aura-sprite'){
+            this.player.frontImg.src = `./assets/images/aura-front-image.png`;
+        }
+
+        if(this.playerSprite === 'peach-sprite'){
+            this.player.frontImg.src = `./assets/images/peach-front-image.png`;
+        }
     }
 
     start(){

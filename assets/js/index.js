@@ -13,8 +13,9 @@ window.onload = () => {
     document.getElementById('start-btn').onclick = () => {
         if(game.player){
             game.start();
-            redButton.classList.add('hidden-btn');
-            linkButton.classList.add('hidden-btn');
+            document.querySelectorAll('.select-player-btn').forEach((button) => {
+                button.classList.add('hidden-btn');
+            });
             selectPlayerText.classList.add('hidden-btn');
         }
         if(!game.player){
@@ -67,18 +68,48 @@ window.onload = () => {
 //select player interface
 const redButton = document.getElementById('red-sprite');
 const linkButton = document.getElementById('link-sprite');
+const auraButton = document.getElementById('aura-sprite');
+const peachButton = document.getElementById('peach-sprite');
 const selectPlayerText = document.getElementById('select-sprite-text');
 
 redButton.onclick = () => {
     game.setPlayer('red-sprite');
     redButton.classList.add('clicked-btn');
-    linkButton.classList.remove('clicked-btn');
+    document.querySelectorAll('.select-player-btn').forEach((button) => {
+        if(button.classList.contains('clicked-btn')){
+            button.classList.remove('clicked-btn');
+        }
+    });
 };
 
 linkButton.onclick = () => {
     game.setPlayer('zelda-sprite');
     linkButton.classList.add('clicked-btn');
-    redButton.classList.remove('clicked-btn');
+    document.querySelectorAll('.select-player-btn').forEach((button) => {
+        if(button.classList.contains('clicked-btn')){
+            button.classList.remove('clicked-btn');
+        }
+    });
+};
+
+auraButton.onclick = () => {
+    game.setPlayer('aura-sprite');
+    auraButton.classList.add('clicked-btn');
+    document.querySelectorAll('.select-player-btn').forEach((button) => {
+        if(button.classList.contains('clicked-btn')){
+            button.classList.remove('clicked-btn');
+        }
+    });
+};
+
+peachButton.onclick = () => {
+    game.setPlayer('peach-sprite');
+    peachButton.classList.add('clicked-btn');
+    document.querySelectorAll('.select-player-btn').forEach((button) => {
+        if(button.classList.contains('clicked-btn')){
+            button.classList.remove('clicked-btn');
+        }
+    });
 };
 
 
