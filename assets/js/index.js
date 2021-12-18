@@ -74,42 +74,42 @@ const selectPlayerText = document.getElementById('select-sprite-text');
 
 redButton.onclick = () => {
     game.setPlayer('red-sprite');
-    redButton.classList.add('clicked-btn');
     document.querySelectorAll('.select-player-btn').forEach((button) => {
         if(button.classList.contains('clicked-btn')){
             button.classList.remove('clicked-btn');
         }
     });
+    redButton.classList.add('clicked-btn');
 };
 
 linkButton.onclick = () => {
     game.setPlayer('zelda-sprite');
-    linkButton.classList.add('clicked-btn');
     document.querySelectorAll('.select-player-btn').forEach((button) => {
         if(button.classList.contains('clicked-btn')){
             button.classList.remove('clicked-btn');
         }
     });
+    linkButton.classList.add('clicked-btn');
 };
 
 auraButton.onclick = () => {
     game.setPlayer('aura-sprite');
-    auraButton.classList.add('clicked-btn');
     document.querySelectorAll('.select-player-btn').forEach((button) => {
         if(button.classList.contains('clicked-btn')){
             button.classList.remove('clicked-btn');
         }
     });
+    auraButton.classList.add('clicked-btn');
 };
 
 peachButton.onclick = () => {
     game.setPlayer('peach-sprite');
-    peachButton.classList.add('clicked-btn');
     document.querySelectorAll('.select-player-btn').forEach((button) => {
         if(button.classList.contains('clicked-btn')){
             button.classList.remove('clicked-btn');
         }
     });
+    peachButton.classList.add('clicked-btn');
 };
 
 
