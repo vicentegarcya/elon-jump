@@ -40,11 +40,42 @@ body {
 
 #logo {
     width: 170px;
+    position: fixed;
+    opacity: 1;
+    animation-name: logoAppearing;
+    animation-duration: 4s;
+}
+
+@keyframes logoAppearing {
+    0% {
+        opacity: 0;
+        top: -20%;
+    }
+
+    90% {
+        opacity: 1;
+        top: -20%;
+    }
+
+    95% {
+        opacity: 1;
+        top: 3%;
+    }
+
+    97.5% {
+        opacity: 1;
+        top: 2%;
+    }
+
+    100% {
+        opacity: 1;
+        top: 3%;
+    }
 }
 
 #email {
     width: 450px;
-    margin-top: 20px;
+    margin-top: 63px;
 }
 
 #wifi-icon {
