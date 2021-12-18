@@ -31,6 +31,36 @@ window.onload = () => {
     document.onkeyup = (event) => {
         game.onKeyUp(event);
     }
+
+    //turn the music off and on
+    const musicOn = document.getElementById('music-on');
+    const musicOff = document.getElementById('music-off');
+
+    const musicOnOff = (button1, button2) => {
+            button1.classList.remove('visible-btn');
+            button1.classList.add('hidden-btn');
+
+            button2.classList.remove('hidden-btn');
+            button2.classList.add('visible-btn');
+    }
+
+    musicOn.onclick = () => {
+        musicOnOff(musicOn, musicOff);
+        game.music.volume = 0;
+        game.bouncySound.volume = 0;
+        game.gameOverSound.volume = 0;
+        game.jumpingSound.volume = 0;
+        game.trapSound.volume = 0;
+    }
+
+    musicOff.onclick = () => {
+        musicOnOff(musicOff, musicOn);
+        game.music.volume = 0.2;
+        game.bouncySound.volume = 0.3;
+        game.gameOverSound.volume = 1;
+        game.jumpingSound.volume = 1;
+        game.trapSound.volume = 1;
+    }
 }
 
 
@@ -74,8 +104,6 @@ const scoresTable = document.getElementById('scores-table');
 const scoresTableNames = document.getElementById('score-table-names');
 const scoresTableScores = document.getElementById('score-table-scores');
 const closeScoreList = document.getElementById('close-score-list');
-
-window.localStorage.setItem('scoreList', JSON.stringify([]));
 
 //get the score list from the localStorage
 let storedScores = JSON.parse(localStorage.getItem('scoresList')) || [];
