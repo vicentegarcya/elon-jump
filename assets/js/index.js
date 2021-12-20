@@ -2,7 +2,35 @@ const canvas = document.getElementById('my-canvas');
 const ctx = canvas.getContext('2d');
 
 const game = new Game(ctx);
-game.setPlayer('red-sprite');
+
+//functionality to use the last player you played with
+if(window.sessionStorage.length > 1){
+    game.setPlayer(window.sessionStorage.getItem('sprite'));
+
+    document.querySelectorAll('.select-player-btn').forEach((button) => {
+        if(button.classList.contains('clicked-btn')){
+            button.classList.remove('clicked-btn');
+        }
+    });
+
+    if(game.playerSprite === 'zelda-sprite'){
+        linkButton.classList.add('clicked-btn');
+    }
+
+    if(game.playerSprite === 'red-sprite'){
+        redButton.classList.add('clicked-btn');
+    }
+
+    if(game.playerSprite === 'aura-sprite'){
+        auraButton.classList.add('clicked-btn');
+    }
+
+    if(game.playerSprite === 'peach-sprite'){
+        peachButton.classList.add('clicked-btn');
+    }
+} else {
+    game.setPlayer('red-sprite');
+}
 
 window.onload = () => {
     //loading page
@@ -17,9 +45,8 @@ window.onload = () => {
                 button.classList.add('hidden-btn');
             });
             selectPlayerText.classList.add('hidden-btn');
-        }
-        if(!game.player){
-            alert('choose a player!');
+
+            window.sessionStorage.setItem('sprite', game.playerSprite);
         }
     };
     
@@ -65,11 +92,7 @@ window.onload = () => {
 }
 
 
-//select player interface
-const redButton = document.getElementById('red-sprite');
-const linkButton = document.getElementById('link-sprite');
-const auraButton = document.getElementById('aura-sprite');
-const peachButton = document.getElementById('peach-sprite');
+//select player funcionality
 const selectPlayerText = document.getElementById('select-sprite-text');
 
 redButton.onclick = () => {
@@ -114,10 +137,6 @@ peachButton.onclick = () => {
 
 
 //game-over interface
-const restartBtn = document.querySelectorAll('.gameover-btn');
-const inputName = document.getElementById('input-name');
-const addScoreBtn = document.getElementById('score-btn');
-
 function showButtons(event) {
     restartBtn.forEach(button => {
         button.classList.remove('hidden-btn');
@@ -131,11 +150,6 @@ function showButtons(event) {
 document.addEventListener('game-finished-event', showButtons)
 
 //scoreboard logic
-const scoresTable = document.getElementById('scores-table');
-const scoresTableNames = document.getElementById('score-table-names');
-const scoresTableScores = document.getElementById('score-table-scores');
-const closeScoreList = document.getElementById('close-score-list');
-
 //get the score list from the localStorage
 let storedScores = JSON.parse(localStorage.getItem('scoresList')) || [];
 

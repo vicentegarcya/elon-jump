@@ -317,14 +317,9 @@ class Game {
         }
 
         //level 5
-        /* if(this.score > 12000){
-            this.mobilePlatforms.forEach(platform => platform.vx = 3);
-        } */
-
-        //level 6
         //It's done in the checkCollisions() method
 
-        //level 7
+        //level 6
         if(this.score > 18000){
             this.platformFrames = 45;
         }

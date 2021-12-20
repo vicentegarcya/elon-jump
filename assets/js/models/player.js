@@ -1,5 +1,5 @@
 class Player {
-    constructor(ctx, sprite = 'zelda-sprite'){
+    constructor(ctx, sprite = 'red-sprite'){
         this.ctx = ctx;
         this.sprite = sprite;
         this.x = 40;
