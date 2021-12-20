@@ -4,7 +4,7 @@ const ctx = canvas.getContext('2d');
 const game = new Game(ctx);
 
 //functionality to use the last player you played with
-if(window.sessionStorage.length > 1){
+if(window.sessionStorage.length){
     game.setPlayer(window.sessionStorage.getItem('sprite'));
 
     document.querySelectorAll('.select-player-btn').forEach((button) => {
@@ -30,7 +30,7 @@ if(window.sessionStorage.length > 1){
     }
 } else {
     game.setPlayer('red-sprite');
-}
+};
 
 window.onload = () => {
     //loading page
