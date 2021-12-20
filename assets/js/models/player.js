@@ -114,7 +114,7 @@ class Player {
 
     collidesWithBouncy(bouncy){
         if(
-            this.y + this.height >= bouncy.y + 5 &&
+            this.y + this.height >= bouncy.y -2 &&
             this.x + this.width - 14 >= bouncy.x &&
             this.x + 14 <= bouncy.x + bouncy.width &&
             this.y + this.height <= bouncy.y + bouncy.height &&

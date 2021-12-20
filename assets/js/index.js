@@ -61,9 +61,6 @@ window.onload = () => {
     }
 
     //turn the music off and on
-    const musicOn = document.getElementById('music-on');
-    const musicOff = document.getElementById('music-off');
-
     const musicOnOff = (button1, button2) => {
             button1.classList.remove('visible-btn');
             button1.classList.add('hidden-btn');

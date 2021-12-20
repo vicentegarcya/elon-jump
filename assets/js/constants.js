@@ -18,3 +18,7 @@ const scoresTable = document.getElementById('scores-table');
 const scoresTableNames = document.getElementById('score-table-names');
 const scoresTableScores = document.getElementById('score-table-scores');
 const closeScoreList = document.getElementById('close-score-list');
+
+//music on/off buttons
+const musicOn = document.getElementById('music-on');
+const musicOff = document.getElementById('music-off');
