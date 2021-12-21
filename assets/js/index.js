@@ -83,7 +83,7 @@ window.onload = () => {
         game.music.volume = 0.2;
         game.bouncySound.volume = 0.3;
         game.gameOverSound.volume = 1;
-        game.jumpingSound.volume = 1;
+        game.jumpingSound.volume = 0.2;
         game.trapSound.volume = 1;
     }
 }

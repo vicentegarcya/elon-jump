@@ -54,6 +54,7 @@ class Game {
         this.trapSound = new Audio('./assets/sounds/trap-sound.mp3');
         this.bouncySound = new Audio('./assets/sounds/bouncy-sound.wav');
         this.bouncySound.volume = 0.3;
+        this.jumpingSound.volume = 0.2;
 
         //objects appearing when X frames
         this.platformFrames = 20;
