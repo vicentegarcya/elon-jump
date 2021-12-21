@@ -2,11 +2,12 @@
 const RIGHT_KEY = 39;
 const LEFT_KEY = 37;
 
-//select player buttons
+//select player screen
 const redButton = document.getElementById('red-sprite');
 const linkButton = document.getElementById('link-sprite');
 const auraButton = document.getElementById('aura-sprite');
 const peachButton = document.getElementById('peach-sprite');
+const selectPlayerText = document.getElementById('select-sprite-text');
 
 //game-over buttons
 const restartBtn = document.querySelectorAll('.gameover-btn');

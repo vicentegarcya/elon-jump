@@ -13,21 +13,20 @@ if(window.sessionStorage.length){
         }
     });
 
-    if(game.playerSprite === 'zelda-sprite'){
-        linkButton.classList.add('clicked-btn');
-    }
-
-    if(game.playerSprite === 'red-sprite'){
-        redButton.classList.add('clicked-btn');
-    }
-
-    if(game.playerSprite === 'aura-sprite'){
-        auraButton.classList.add('clicked-btn');
-    }
-
-    if(game.playerSprite === 'peach-sprite'){
-        peachButton.classList.add('clicked-btn');
-    }
+    switch (game.playerSprite) {
+        case 'red-sprite':
+            redButton.classList.add('clicked-btn');
+            break;
+        case 'zelda-sprite':
+            linkButton.classList.add('clicked-btn');
+            break;
+        case 'aura-sprite':
+            auraButton.classList.add('clicked-btn');
+            break;
+        case 'peach-sprite':
+            peachButton.classList.add('clicked-btn');
+            break;
+    };
 } else {
     game.setPlayer('red-sprite');
 };
@@ -90,8 +89,6 @@ window.onload = () => {
 
 
 //select player funcionality
-const selectPlayerText = document.getElementById('select-sprite-text');
-
 redButton.onclick = () => {
     game.setPlayer('red-sprite');
     document.querySelectorAll('.select-player-btn').forEach((button) => {
