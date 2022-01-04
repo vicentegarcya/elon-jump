@@ -3,6 +3,10 @@ dark-blue: #00001b;
 light-yellow: #fcfaec;
 */
 
+.non-displayed {
+    display: none;
+}
+
 body {
     display: flex;
     flex-direction: row;
@@ -225,14 +229,6 @@ button, input {
     width: 229.5px;
 }
 
-.visible-btn {
-    visibility: visible;
-}
-
-.hidden-btn {
-    visibility: hidden;
-}
-
 /* SELECT PLAYER */
 
 .select-player-btn {
@@ -440,10 +436,6 @@ button, input {
 }
 
 /* SCORES PAGE */
-
-.non-displayed {
-    display: none;
-}
 
 #scores-table {
     position: absolute;

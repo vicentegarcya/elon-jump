@@ -40,10 +40,11 @@ window.onload = () => {
     document.getElementById('start-btn').onclick = () => {
         if(game.player){
             game.start();
+            document.getElementById('start-btn').style.display = 'none';
             document.querySelectorAll('.select-player-btn').forEach((button) => {
-                button.classList.add('hidden-btn');
+                button.classList.add('non-displayed');
             });
-            selectPlayerText.classList.add('hidden-btn');
+            selectPlayerText.classList.add('non-displayed');
 
             window.sessionStorage.setItem('sprite', game.playerSprite);
         }
@@ -61,11 +62,8 @@ window.onload = () => {
 
     //turn the music off and on
     const musicOnOff = (button1, button2) => {
-            button1.classList.remove('visible-btn');
-            button1.classList.add('hidden-btn');
-
-            button2.classList.remove('hidden-btn');
-            button2.classList.add('visible-btn');
+            button1.classList.add('non-displayed');
+            button2.classList.remove('non-displayed');
     }
 
     musicOn.onclick = () => {
@@ -133,11 +131,9 @@ peachButton.onclick = () => {
 //game-over interface
 function showButtons(event) {
     restartBtn.forEach(button => {
-        button.classList.remove('hidden-btn');
-        button.classList.add('visible-btn');
+        button.classList.remove('non-displayed');
     });
-    inputName.classList.remove('hidden-btn');
-    inputName.classList.add('visible-btn');
+    inputName.classList.remove('non-displayed');
     document.removeEventListener('game-finished-event', showButtons)
 };
 
@@ -169,10 +165,8 @@ addScoreBtn.onclick = () => {
             console.log(object.sprite)
         });
 
-        inputName.classList.remove('visible-btn');
-        inputName.classList.add('hidden-btn');
-        addScoreBtn.classList.remove('visible-btn');
-        addScoreBtn.classList.add('hidden-btn');
+        inputName.classList.add('non-displayed');
+        addScoreBtn.classList.add('non-displayed');
 
         scoresTable.classList.remove('non-displayed');
         closeScoreList.classList.remove('non-displayed');
