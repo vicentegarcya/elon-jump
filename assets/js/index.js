@@ -157,12 +157,11 @@ addScoreBtn.onclick = () => {
         storedScores.forEach(object => {
             scoresTable.innerHTML += `
             <tr class="score-row">
-                <td><img src='${object.sprite}'</td>
+                <td><img src='${object.sprite}'></td>
                 <td>${object.name}</td>
                 <td>${object.score}</td>
             </tr>
             `;
-            console.log(object.sprite)
         });
 
         inputName.classList.add('non-displayed');
